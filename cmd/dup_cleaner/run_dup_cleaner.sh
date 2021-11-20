@@ -1,0 +1,1 @@
+./dup_cleaner -p=../../test/dup_files -f -l=DEBUG
