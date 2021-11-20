@@ -24,7 +24,4 @@ func TestGetFileList(t *testing.T) {
 	if list[1].fs.Name() != "dup_cleaner_test.go" {
 		t.Error("list[1].fs.Name()!=dup_cleaner_test.go")
 	}
-	if list[2].fs.Name() != "test1.txt" {
-		t.Error("list[2].fs.Name()!=test.txt")
-	}
 }

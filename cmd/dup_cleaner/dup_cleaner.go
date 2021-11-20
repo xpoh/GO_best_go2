@@ -94,11 +94,7 @@ func (a *app) getFileList(path string) (list []fileInfoWithPath, err error) {
 // sync.WaitGroup для синхронизации, возвращающий err - ошибку
 func (f *fileInfoWithPath) removeFile(wg *sync.WaitGroup) (err error) {
 	defer wg.Done()
-
 	err = os.Remove(f.path)
-	if err == nil {
-		fmt.Println("Удален файл: ", f.path)
-	}
 	return err
 }
 
@@ -194,7 +190,6 @@ func main() {
 		return
 	}
 
-	fmt.Println("Найдено файлов: ", len(list))
 	a.log.Info("Files found ", zap.Int("foundcount", len(list)))
 	m := make(map[string]string)
 
@@ -208,7 +203,6 @@ func main() {
 		_, ok := m[hash]
 		if !ok {
 			m[hash] = list[i].path
-			fmt.Println("Uniq file: ", list[i].path)
 			a.log.Info("New uniq file", zap.String("filename", list[i].path))
 		} else {
 			a.log.Info("New duplicate file", zap.String("filename", list[i].path))
